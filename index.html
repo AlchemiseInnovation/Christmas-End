@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Random Christmas Video + Audio</title>
+  <style>
+    body { margin: 0; background: black; }
+    video { width: 100vw; height: 100vh; object-fit: cover; }
+  </style>
+</head>
+<body>
+
+<video id="vid" autoplay muted playsinline></video>
+<audio id="music" autoplay></audio>
+
+<script>
+// --- AUTO-GENERATE YOUR 60 VIDEO FILES ---
+const videoFiles = [];
+for (let i = 0; i <= 59; i++) {
+  videoFiles.push(`Christmas(${i}).mp4`);
+}
+
+// --- YOUR AUDIO FILES ---
+const audioFiles = [
+  "song1.mp3",
+  "song2.mp3",
+  "song3.mp3"
+];
+
+// --- HELPERS ---
+function pickRandom(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+// --- VIDEO LOGIC ---
+const vid = document.getElementById("vid");
+function playRandomVideo() {
+  vid.src = "videos/" + pickRandom(videoFiles); // adjust folder if needed
+  vid.play();
+}
+vid.addEventListener("ended", playRandomVideo);
+
+// --- AUDIO LOGIC ---
+const music = document.getElementById("music");
+function playRandomSong() {
+  music.src = "audio/" + pickRandom(audioFiles); // adjust folder if needed
+  music.play();
+}
+music.addEventListener("ended", playRandomSong);
+
+// --- START ---
+playRandomVideo();
+playRandomSong();
+</script>
+
+</body>
+</html>
